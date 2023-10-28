@@ -1,0 +1,427 @@
+openapi: 3.0.0
+info:
+  title: TourPlanner
+  description: This is the specification of the API endpoints of the tourplanner server.
+  version: 1.0.0
+tags:
+- name: Tours
+  description: Create, modify and delete tours
+- name: Tour Logs
+  description: Create, modify and delete tour logs
+- name: Data transfer
+  description: Import and export of the entire tour data
+- name: Debug
+  description: API endpoints for debug purposes
+paths:
+  /tours:
+    post:
+      tags:
+        - Tours
+      summary: Create a tour
+      description: Create a new tour
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tour'
+      responses:
+        '201':
+          description: Tour created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tour'
+        '400':
+          description: Bad request (most likely due to invalid lokation)
+        '500':
+          description: Internal server error
+    get:
+      tags:
+        - Tours
+      summary: Get a list of all tours
+      description: Get a list of all available tours
+      responses:
+        '200':
+          description: A minimum of one tour exists, the response contains an array of tours
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TourListEntry'
+        '204':
+          description: The request was fine, but no tours were created yet
+        '500':
+          description: Internal server error
+  /tours/{tourId}:
+    get:
+      tags:
+        - Tours
+      summary: Get a single tour
+      description: Get a single tour
+      parameters:
+        - in: path
+          name: tourId
+          required: true
+          schema:
+            type: integer
+          description: The id of the tour to get
+      responses:
+        '200':
+          description: A tour with the given id exists, the response contains the tour
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tour'
+        '404':
+          description: Tour with given id not found
+        '500':
+          description: Internal server error
+    put:
+      tags:
+        - Tours
+      summary: Update a tour
+      description: Update an existing tour
+      parameters:
+        - in: path
+          name: tourId
+          required: true
+          schema:
+            type: integer
+          description: The id of the tour to update
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tour'
+      responses:
+        '200':
+          description: Tour updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tour'
+        '400':
+          description: Bad request (most likely due to invalid lokation)
+        '404':
+          description: Tour with given id not found
+        '500':
+          description: Internal server error
+    delete:
+      tags:
+        - Tours
+      summary: Delete a tour
+      description: Delete an existing tour
+      parameters:
+        - in: path
+          name: tourId
+          required: true
+          schema:
+            type: integer
+          description: The id of the tour to delete
+      responses:
+        '200':
+          description: Tour deleted successfully
+        '404':
+          description: Tour with given id not found
+        '500':
+          description: Internal server error
+  /tours/search/{keyword}:
+    get:
+      tags:
+        - Tours
+      summary: Get a list of tours containing a keyword
+      description: Get a list of tours containing a specific keyword
+      parameters:
+        - in: path
+          name: keyword
+          required: true
+          schema:
+            type: string
+          description: The keyword to search for
+      responses:
+        '200':
+          description: A minimum of one tour exists, the response contains an array of tours that contains the keyword
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TourListEntry'
+        '204':
+          description: The request was fine, but no tours were created yet
+        '404':
+          description: No tours containing the keyword exist
+        '500':
+          description: Internal server error
+  /tours/{tourId}/tourlogs:
+    post:
+      tags:
+        - Tour Logs
+      summary: Create a tourlog for a tour
+      description: Create a tourlog for a tour
+      parameters:
+        - in: path
+          name: tourId
+          required: true
+          schema:
+            type: integer
+          description: The id of the tour to create a tourlogs of
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TourLog'
+      responses:
+        '201':
+          description: Tourlog created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TourLog'
+        '404':
+          description: Tour with given id not found
+        '500':
+          description: Internal server error
+    get:
+      tags:
+        - Tour Logs
+      summary: Get all tourlogs for a tour
+      description: Get all tourlogs for a tour
+      parameters:
+        - in: path
+          name: tourId
+          required: true
+          schema:
+            type: integer
+          description: The id of the tour to get tourlogs from
+      responses:
+        '200':
+          description: A tour with the given tour id exists and tourlogs for the tour exist, the response contains the tour logs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TourLog'
+        '204':
+          description: The request was fine, but no tourlogs were created yet
+        '404':
+          description: Tour with given id not found
+        '500':
+          description: Internal server error
+  /tourlogs/{tourlogId}:
+    get:
+      tags:
+        - Debug
+      summary: Get a single tourlog
+      description: Get a single tourlog for a tour
+      parameters:
+        - in: path
+          name: tourlogId
+          required: true
+          schema:
+            type: integer
+          description: The id of the tourlog to get
+      responses:
+        '200':
+          description: A tour with the given tour id exists and a tourlog with the given id exists, the response contains the tour log
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TourLog'
+        '404':
+          description: Tour with given id not found or tourlog with given id not found
+        '500':
+          description: Internal server error
+    put:
+      tags:
+        - Tour Logs
+      summary: Update a tourlog
+      description: Update an existing tourlog
+      parameters:
+        - in: path
+          name: tourlogId
+          required: true
+          schema:
+            type: integer
+          description: The id of the tourlog to update
+      responses:
+        '200':
+          description: Tourlog updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TourLog'
+        '404':
+          description: Tour with given id not found or tourlog with given id not found
+        '500':
+          description: Internal server error
+    delete:
+      tags:
+        - Tour Logs
+      summary: Delete a tourlog
+      description: Delete a tourlog
+      parameters:
+        - in: path
+          name: tourlogId
+          required: true
+          schema:
+            type: integer
+          description: The id of the tourlog to delete
+      responses:
+        '200':
+          description: Tourlog deleted successfully
+        '404':
+          description: Tour with given id not found or tourlog with given id not found
+        '500':
+          description: Internal server error
+  /import:
+    post:
+      tags:
+        - Data transfer
+      summary: Import tours
+      description: Import tours
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tour'
+      responses:
+        '201':
+          description: Tours imported successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tour'
+        '400':
+          description: Bad request (most likely due to invalid lokation)
+        '500':
+          description: Internal server error
+  /export:
+    get:
+      tags:
+        - Data transfer
+      summary: Export tours
+      description: Export tours
+      responses:
+        '200':
+          description: A minimum of one tour exists, the response contains an array of tours
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tour'
+        '204':
+          description: The request was fine, but no tours were created yet
+        '500':
+          description: Internal server error
+  /tourlogs:
+    get:
+      tags:
+        - Debug
+      summary: Get all tourlogs
+      description: Get all tourlogs
+      responses:
+        '200':
+          description: A minimum of one tourlog exists, the response contains an array of tourlogs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TourLog'
+        '204':
+          description: The request was fine, but no tourlogs were created yet
+        '500':
+          description: Internal server error
+components:
+  schemas:
+    TourListEntry:
+      type: object
+      properties:
+        tourId:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "MyTour"
+    Tour:
+      type: object
+      properties:
+        tourId:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "MyTour"
+        tourDescription:
+          type: string
+          example: "My beautiful tour"
+        start:
+          type: string
+          example: "Vienna"
+        destination:
+          type: string
+          example: "Bratislava"
+        transportType:
+          type: string
+          example: "car"
+          enum:
+            - "car"
+            - "bicycle"
+            - "pedestrian"
+        tourDistance:
+          type: number
+          example: 80.5
+          description: Tour distance in kilometers
+        estimatedTime:
+          type: integer
+          example: 3480
+          description: Estimated time in seconds
+        popularity:
+          type: integer
+          example: 2
+          description: popularity (from 1 - 5), default value = 1
+        childFriendliness:
+          type: integer
+          example: 3
+          description: child-friendliness (from 1 - 5), default value = 3
+        tourInformation:
+          type: string
+          example: aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQ==
+          description: Base64 encoded image file
+        tourLogs:
+          type: array
+          items:
+            $ref: '#/components/schemas/TourLog'
+    TourLog:
+      type: object
+      properties:
+        tourLogId:
+          type: integer
+          example: 1
+        date:
+          type: string
+          example: "2023-05-11 10:16:51"
+          description: Date YYYY-MM-DD HH:MM:SS
+        comment:
+          type: string
+          example: "Me likes!"
+        difficulty:
+          type: integer
+          example: 2
+          description: Difficulty (from 1 to 5)
+        totalTime:
+          type: integer
+          example: 3480
+          description: Actual time spent in seconds
+        rating:
+          type: integer
+          example: 5
+          description: Rating (1-5 stars)

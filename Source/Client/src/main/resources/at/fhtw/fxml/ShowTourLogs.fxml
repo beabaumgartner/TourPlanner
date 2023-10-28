@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx"
+            fx:controller="at.fhtw.view.ShowTourLogsView"
+            prefHeight="300.0" prefWidth="600.0"
+            fx:id="tourLogPane">
+    <children>
+        <VBox fx:id="paneContainer" alignment="CENTER"
+        AnchorPane.topAnchor="0.0"
+        AnchorPane.bottomAnchor="0.0"
+        AnchorPane.leftAnchor="0.0"
+        AnchorPane.rightAnchor="0.0">
+        </VBox>
+    </children>
+</AnchorPane>

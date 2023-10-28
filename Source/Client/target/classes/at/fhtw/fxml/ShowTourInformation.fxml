@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Separator?>
+<?import java.net.URL?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx"
+            fx:controller="at.fhtw.view.ShowTourInformationView"
+            prefHeight="300.0" prefWidth="600.0"
+            fx:id="ImagePane">
+
+    <children>
+
+        <Label fx:id="informationTextField"
+               AnchorPane.topAnchor="0.0"
+               AnchorPane.bottomAnchor="62.0"
+               AnchorPane.leftAnchor="0.0"
+               AnchorPane.rightAnchor="0.0"
+               text="Please select a Tour to see Information!" alignment="CENTER"/>
+        <VBox fx:id="informationTypeField" spacing="10"
+                AnchorPane.topAnchor="10"
+                AnchorPane.bottomAnchor="100"
+                AnchorPane.leftAnchor="10"
+                AnchorPane.rightAnchor="10">
+            <HBox>
+                <children>
+                    <HBox spacing="10">
+                        <VBox>
+                            <Label text="Name: " styleClass="bold-informationTypeFields"/>
+                            <Label text="Start: " styleClass="bold-informationTypeFields"/>
+                            <Label text="Destination: " styleClass="bold-informationTypeFields"/>
+                            <Label text="Transport Type: " styleClass="bold-informationTypeFields"/>
+                            <Label text="Tour Distance: " styleClass="bold-informationTypeFields"/>
+                            <Label text="Estimated Time: " styleClass="bold-informationTypeFields"/>
+                            <Label text="Popularity: " styleClass="bold-informationTypeFields"/>
+                            <Label text="Child-Friendliness: " styleClass="bold-informationTypeFields"/>
+                        </VBox>
+                        <VBox>
+                            <Label fx:id="tourNameLabel" />
+                            <Label fx:id="startLabel" />
+                            <Label fx:id="destinationLabel" />
+                            <Label fx:id="transportTypeLabel" />
+                            <Label fx:id="distanceLabel" />
+                            <Label fx:id="estimatedTimeLabel" />
+                            <Label fx:id="popularityLabel" />
+                            <Label fx:id="childFriendlinessLabel" />
+                        </VBox>
+                    </HBox>
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <HBox fx:id="HBoxImage" alignment="TOP_RIGHT"></HBox>
+                </children>
+            </HBox>
+            <Separator orientation="HORIZONTAL" />
+            <HBox spacing="10" fx:id="tourDescriptionBox"
+                  AnchorPane.bottomAnchor="0.0">
+                <VBox>
+                    <Label text="Tour Description: " styleClass="bold-informationTypeFields" style="-fx-font-weight: bold"/>
+                    <Label fx:id="tourDescriptionLabel"/>
+                </VBox>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <HBox style="-fx-padding: 30 35 0 0;" spacing="8">
+                    <Button styleClass="important-button" minWidth="90" fx:id="updateButton" text="Update Tour"></Button>
+                    <Button styleClass="important-button" minWidth="90" fx:id="createTourReportButton" text="Create Report"></Button>
+                </HBox>
+            </HBox>
+        </VBox>
+    </children>
+    <stylesheets>
+        <URL value="@../css_sheets/showInformation.css" />
+    </stylesheets>
+</AnchorPane>
