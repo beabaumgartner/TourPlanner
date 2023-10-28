@@ -1,0 +1,611 @@
+{
+	"info": {
+		"_postman_id": "cbf8e4d2-fa94-4a0d-9cda-6ac8d14287c7",
+		"name": "SWEN2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "MapQuest API",
+			"item": [
+				{
+					"name": "Directions API",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.mapquestapi.com/directions/v2/route?key=<API_KEY>&from=Pilgramgasse&to=Kettenbrückengasse&routeType=pedestrian&unit=k",
+							"protocol": "https",
+							"host": [
+								"www",
+								"mapquestapi",
+								"com"
+							],
+							"path": [
+								"directions",
+								"v2",
+								"route"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "<API_KEY>"
+								},
+								{
+									"key": "from",
+									"value": "Pilgramgasse"
+								},
+								{
+									"key": "to",
+									"value": "Kettenbrückengasse"
+								},
+								{
+									"key": "routeType",
+									"value": "pedestrian",
+									"description": "options: fastest, pedestrian, bicycle"
+								},
+								{
+									"key": "unit",
+									"value": "k"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Static Map API",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.mapquestapi.com/staticmap/v5/map?key=<API_KEY>&start=Pilgramgasse&end=Kettenbrückengasse",
+							"protocol": "https",
+							"host": [
+								"www",
+								"mapquestapi",
+								"com"
+							],
+							"path": [
+								"staticmap",
+								"v5",
+								"map"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "<API_KEY>"
+								},
+								{
+									"key": "start",
+									"value": "Pilgramgasse"
+								},
+								{
+									"key": "end",
+									"value": "Kettenbrückengasse"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Spring Test",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:10001/users",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "10001",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 99,\r\n    \"name\": \"Felix\",\r\n    \"age\": 25,\r\n    \"email\": \"testmail\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:10001/users",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "10001",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:10001/users/1",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "10001",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"age\": 30,\r\n    \"email\": \"tes234324tmail123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:10001/users/1",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "10001",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TourPlanner",
+			"item": [
+				{
+					"name": "Tours",
+					"item": [
+						{
+							"name": "Create a tour",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"MyTour\",\r\n    \"tourDescription\": \"My beautiful tour\",\r\n    \"start\": \"Vienna\",\r\n    \"destination\": \"Bratislava\",\r\n    \"transportType\": \"Car\",\r\n    \"tourDistance\": 80.5,\r\n    \"estimatedTime\": 3480000,\r\n    \"tourInformation\": \"aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQ==\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:10001/tours",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "10001",
+									"path": [
+										"tours"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a list of all tours",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:10001/tours",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "10001",
+									"path": [
+										"tours"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a single tour",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:10001/tours/1",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "10001",
+									"path": [
+										"tours",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a tour",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"tourId\": 1,\r\n    \"name\": \"a\",\r\n    \"tourDescription\": \"a\",\r\n    \"start\": \"stockerau\",\r\n    \"destination\": \"spillern\",\r\n    \"transportType\": \"pedestrian\",\r\n    \"tourDistance\": 0,\r\n    \"estimatedTime\": 0,\r\n    \"tourInformation\": \"a\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:10001/tours/1",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "10001",
+									"path": [
+										"tours",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a tour",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:10001/tours/1",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "10001",
+									"path": [
+										"tours",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Tour Logs",
+					"item": [
+						{
+							"name": "Create a tourlog for a tour",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"tourLogId\": 456,\r\n  \"date\": 1,\r\n  \"comment\": \"Me likes!\",\r\n  \"difficulty\": 1,\r\n  \"totalTime\": 3480000,\r\n  \"rating\": 5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:10001/tours/1/tourlogs",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "10001",
+									"path": [
+										"tours",
+										"1",
+										"tourlogs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all tourlogs for a tour",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:10001/tours/1/tourlogs",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "10001",
+									"path": [
+										"tours",
+										"1",
+										"tourlogs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a single tourlog",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:10001/tourlogs/1",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "10001",
+									"path": [
+										"tourlogs",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a tourlog",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"tourLogId\": 456,\r\n  \"tourId\": 1,\r\n  \"date\": 3480000,\r\n  \"comment\": \"Me likes!\",\r\n  \"difficulty\": 1,\r\n  \"totalTime\": 3480000,\r\n  \"rating\": 5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:10001/tourlogs/1",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "10001",
+									"path": [
+										"tourlogs",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a tourlog",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:10001/tourlogs/1",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "10001",
+									"path": [
+										"tourlogs",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Data Transfer",
+					"item": [
+						{
+							"name": "Import",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"tourId\": 1,\r\n        \"name\": \"MyTour\",\r\n        \"tourDescription\": \"My beautiful tour\",\r\n        \"start\": \"Vienna\",\r\n        \"destination\": \"Bratislava\",\r\n        \"transportType\": \"Car\",\r\n        \"tourDistance\": 81.7,\r\n        \"estimatedTime\": 3366,\r\n        \"tourInformation\": \"aaa\",\r\n        \"tourLogs\": [\r\n            {\r\n                \"tourLogId\": 1,\r\n                \"date\": \"2023-05-11 10:16:51\",\r\n                \"comment\": \"Me likes!\",\r\n                \"difficulty\": 1,\r\n                \"totalTime\": 3480000,\r\n                \"rating\": 5\r\n            },\r\n            {\r\n                \"tourLogId\": 2,\r\n                \"date\": \"2023-05-11 10:16:52\",\r\n                \"comment\": \"Me likes!\",\r\n                \"difficulty\": 1,\r\n                \"totalTime\": 3480000,\r\n                \"rating\": 5\r\n            },\r\n            {\r\n                \"tourLogId\": 3,\r\n                \"date\": \"2023-05-11 10:16:52\",\r\n                \"comment\": \"Me likes!\",\r\n                \"difficulty\": 1,\r\n                \"totalTime\": 3480000,\r\n                \"rating\": 5\r\n            },\r\n            {\r\n                \"tourLogId\": 6,\r\n                \"date\": \"2023-05-11 10:17:05\",\r\n                \"comment\": \"Me likes!\",\r\n                \"difficulty\": 1,\r\n                \"totalTime\": 3480000,\r\n                \"rating\": 5\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"tourId\": 2,\r\n        \"name\": \"MyTour\",\r\n        \"tourDescription\": \"My beautiful tour\",\r\n        \"start\": \"Vienna\",\r\n        \"destination\": \"Bratislava\",\r\n        \"transportType\": \"Car\",\r\n        \"tourDistance\": 81.7,\r\n        \"estimatedTime\": 3366,\r\n        \"tourInformation\": \"bbb\",\r\n        \"tourLogs\": []\r\n    },\r\n    {\r\n        \"tourId\": 3,\r\n        \"name\": \"MyTour\",\r\n        \"tourDescription\": \"My beautiful tour\",\r\n        \"start\": \"Vienna\",\r\n        \"destination\": \"Bratislava\",\r\n        \"transportType\": \"Car\",\r\n        \"tourDistance\": 81.7,\r\n        \"estimatedTime\": 3366,\r\n        \"tourInformation\": \"ccc\",\r\n        \"tourLogs\": [\r\n            {\r\n                \"tourLogId\": 4,\r\n                \"date\": \"2023-05-11 10:16:57\",\r\n                \"comment\": \"Me likes!\",\r\n                \"difficulty\": 1,\r\n                \"totalTime\": 3480000,\r\n                \"rating\": 5\r\n            },\r\n            {\r\n                \"tourLogId\": 5,\r\n                \"date\": \"2023-05-11 10:16:57\",\r\n                \"comment\": \"Me likes!\",\r\n                \"difficulty\": 1,\r\n                \"totalTime\": 3480000,\r\n                \"rating\": 5\r\n            }\r\n        ]\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:10001/import",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "10001",
+									"path": [
+										"import"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Export",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:10001/export",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "10001",
+									"path": [
+										"export"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Debug",
+					"item": [
+						{
+							"name": "Get all tourlogs",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:10001/tourlogs",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "10001",
+									"path": [
+										"tourlogs"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
